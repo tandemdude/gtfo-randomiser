@@ -48,16 +48,16 @@
   ],
   "difficulties": {
     "A1": ["High", "Extreme"],
-    "A2": ["High", "Extreme", "Overload", "Prisoner Experience"],
-    "A3": ["High", "Extreme", "Overload", "Prisoner Experience"],
+    "A2": ["High", "Extreme", "Overload", "Prisoner Efficiency"],
+    "A3": ["High", "Extreme", "Overload", "Prisoner Efficiency"],
     "B1": ["High", "Extreme"],
-    "B2": ["High", "Extreme", "Overload", "Prisoner Experience"],
-    "B3": ["High", "Extreme", "Overload", "Prisoner Experience"],
+    "B2": ["High", "Extreme", "Overload", "Prisoner Efficiency"],
+    "B3": ["High", "Extreme", "Overload", "Prisoner Efficiency"],
     "C1": ["High", "Extreme"],
-    "C2": ["High", "Extreme", "Overload", "Prisoner Experience"],
-    "C3": ["High", "Extreme", "Overload", "Prisoner Experience"],
+    "C2": ["High", "Extreme", "Overload", "Prisoner Efficiency"],
+    "C3": ["High", "Extreme", "Overload", "Prisoner Efficiency"],
     "D1": ["High", "Extreme"],
-    "D2": ["High", "Extreme", "Overload", "Prisoner Experience"],
+    "D2": ["High", "Extreme", "Overload", "Prisoner Efficiency"],
     "E1": ["High", "Extreme"]
   }
 }
