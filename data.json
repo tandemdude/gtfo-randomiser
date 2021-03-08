@@ -1,0 +1,63 @@
+{
+  "stages":  [
+    "A1",
+    "A2",
+    "A3",
+    "B1",
+    "B2",
+    "B3",
+    "C1",
+    "C2",
+    "C3",
+    "D1",
+    "D2",
+    "E1"
+  ],
+  "primaries": [
+    "Autopistol",
+    "Pistol",
+    "Hel Revolver",
+    "DMR",
+    "SMG",
+    "Carbine",
+    "Assault Rifle",
+    "Heavy Assault Rifle"
+  ],
+  "specials": [
+    "Shotgun",
+    "Choke Mod Shotgun",
+    "Combat Shotgun",
+    "Sniper",
+    "Burst Cannon",
+    "Machinegun",
+    "Revolver"
+  ],
+  "utilities": [
+    "Biotracker",
+    "C-Foam Launcher",
+    "Auto Sentry",
+    "Burst Sentry",
+    "Sniper Sentry",
+    "Mine Deployer"
+  ],
+  "melees": [
+    "Sledgehammer",
+    "Maul",
+    "Mallet",
+    "Gavel"
+  ],
+  "difficulties": {
+    "A1": ["High", "Extreme"],
+    "A2": ["High", "Extreme", "Overload", "Prisoner Experience"],
+    "A3": ["High", "Extreme", "Overload", "Prisoner Experience"],
+    "B1": ["High", "Extreme"],
+    "B2": ["High", "Extreme", "Overload", "Prisoner Experience"],
+    "B3": ["High", "Extreme", "Overload", "Prisoner Experience"],
+    "C1": ["High", "Extreme"],
+    "C2": ["High", "Extreme", "Overload", "Prisoner Experience"],
+    "C3": ["High", "Extreme", "Overload", "Prisoner Experience"],
+    "D1": ["High", "Extreme"],
+    "D2": ["High", "Extreme", "Overload", "Prisoner Experience"],
+    "E1": ["High", "Extreme"]
+  }
+}
