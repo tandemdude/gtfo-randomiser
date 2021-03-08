@@ -1,6 +1,7 @@
-const rundown_info = fetch("https://raw.githubusercontent.com/tandemdude/gtfo-randomiser/master/data.json")
+var rundown_info = null;
+const rundown_promise = fetch("https://raw.githubusercontent.com/tandemdude/gtfo-randomiser/master/data.json")
     .then(response => response.json())
-
+    .then(result => {rundown_info = result})
 
 function get_random_loadout() {
     let primary = rundown_info["primaries"][Math.floor(Math.random()*rundown_info["primaries"].length)];
@@ -29,6 +30,7 @@ function set_stage(stage_info) {
 }
 
 function randomise_loadout() {
+
     let stage = get_random_stage();
     set_stage(stage);
     for (let i=1; i < 5; i++) {
