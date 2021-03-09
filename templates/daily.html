@@ -1,0 +1,31 @@
+<!doctype HTML>
+<html lang="en">
+    <link rel="stylesheet" href="../static/styles.css">
+
+    <title>GTFO Loadout Randomiser</title>
+    <body>
+        <div class="header">
+            <h1>GTFO Loadout Randomiser</h1>
+        </div>
+
+        <div class="card-container">
+            {% for n, player in players %}
+                <div class="card">
+                    <h2>Player {{n}}</h2>
+                    <div id={{n}}>
+                        {% for line, data in player %}
+                            <p>{{ line }} <span class="data">{{ data }}</span></p>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+
+        <div class="card-container">
+            <div class="card" style="margin: auto;max-width: 50%;">
+                <h2>Stage: <span class="data">{{ stage }}</span></h2>
+                <h2>Difficulty: <span class="data">{{ difficulty }}</span></h2>
+            </div>
+        </div>
+    </body>
+</html>

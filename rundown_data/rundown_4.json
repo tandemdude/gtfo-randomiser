@@ -1,64 +1,64 @@
 {
   "id": 4,
   "stages":  [
-    "A1",
-    "A2",
-    "A3",
-    "B1",
-    "B2",
-    "B3",
-    "C1",
-    "C2",
-    "C3",
-    "D1",
-    "D2",
-    "E1"
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
   ],
   "primaries": [
-    "Autopistol",
-    "Pistol",
-    "Hel Revolver",
-    "DMR",
-    "SMG",
-    "Carbine",
-    "Assault Rifle",
-    "Heavy Assault Rifle"
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
   ],
   "specials": [
-    "Shotgun",
-    "Choke Mod Shotgun",
-    "Combat Shotgun",
-    "Sniper",
-    "Burst Cannon",
-    "Machinegun",
-    "Revolver"
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
   ],
   "utilities": [
-    "Biotracker",
-    "C-Foam Launcher",
-    "Auto Sentry",
-    "Burst Sentry",
-    "Sniper Sentry",
-    "Mine Deployer"
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
   ],
   "melees": [
-    "Sledgehammer",
-    "Maul",
-    "Mallet",
-    "Gavel"
+    1,
+    2,
+    3,
+    4
   ],
   "difficulties": {
-    "A1": ["High", "Extreme"],
-    "A2": ["High", "Extreme", "Overload", "Prisoner Efficiency"],
-    "A3": ["High", "Extreme", "Overload", "Prisoner Efficiency"],
-    "B1": ["High", "Extreme"],
-    "B2": ["High", "Extreme", "Overload", "Prisoner Efficiency"],
-    "B3": ["High", "Extreme", "Overload", "Prisoner Efficiency"],
-    "C1": ["High", "Extreme"],
-    "C2": ["High", "Extreme", "Overload", "Prisoner Efficiency"],
-    "C3": ["High", "Extreme", "Overload", "Prisoner Efficiency"],
-    "D1": ["High", "Extreme"],
-    "D2": ["High", "Extreme", "Overload", "Prisoner Efficiency"],
-    "E1": ["High", "Extreme"]
+    "A1": [1, 2],
+    "A2": [1, 2, 3, 4],
+    "A3": [1, 2, 3, 4],
+    "B1": [1, 2],
+    "B2": [1, 2, 3, 4],
+    "B3": [1, 2, 3, 4],
+    "C1": [1, 2],
+    "C2": [1, 2, 3, 4],
+    "C3": [1, 2, 3, 4],
+    "D1": [1, 2],
+    "D2": [1, 2, 3, 4],
+    "E1": [1, 2]
   }
 }

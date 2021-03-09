@@ -3,16 +3,18 @@ import typing
 import random
 import json
 
+import enums
+
 
 @dataclasses.dataclass
 class RundownLoadoutInfo:
     id: int
-    stages: typing.Sequence[str]
-    primaries: typing.Sequence[str]
-    specials: typing.Sequence[str]
-    utility: typing.Sequence[str]
-    melees: typing.Sequence[str]
-    difficulties: typing.Mapping[str, typing.Sequence[str]]
+    stages: typing.Sequence[enums.Stage]
+    primaries: typing.Sequence[enums.Primary]
+    specials: typing.Sequence[enums.Special]
+    utility: typing.Sequence[enums.Utility]
+    melees: typing.Sequence[enums.Melee]
+    difficulties: typing.Mapping[str, typing.Sequence[enums.Difficulty]]
 
     def get_random_stage(self):
         return random.choice(self.stages)
@@ -36,12 +38,12 @@ class RundownLoadoutInfo:
     def from_json(cls, json_data):
         return cls(
             json_data["id"],
-            json_data["stages"],
-            json_data["primaries"],
-            json_data["specials"],
-            json_data["utilities"],
-            json_data["melees"],
-            json_data["difficulties"],
+            [enums.Stage(s) for s in json_data["stages"]],
+            [enums.Primary(p) for p in json_data["primaries"]],
+            [enums.Special(s) for s in json_data["specials"]],
+            [enums.Utility(u) for u in json_data["utilities"]],
+            [enums.Melee(m) for m in json_data["melees"]],
+            {k: [enums.Difficulty(d) for d in v] for k, v in json_data["difficulties"].items()},
         )
 
 
