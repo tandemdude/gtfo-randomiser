@@ -9,12 +9,16 @@ import daily as daily_
 
 app = flask.Flask(__name__)
 POOL = pool.ThreadedConnectionPool(3, 10, os.environ["DATABASE_URL"], sslmode="require")
-utils.init_db(POOL)
 
 RUNDOWNS = utils.get_rundown_data()
 
 EMPTY_CARD = [("Primary:", "..."), ("Special:", "..."), ("Utility:", "..."), ("Melee:", "...")]
 PLAYERS = [1, 2, 3, 4]
+
+
+@app.before_first_request
+def server_setup():
+    utils.init_db(POOL)
 
 
 @app.route("/")
