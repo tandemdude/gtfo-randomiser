@@ -17,7 +17,7 @@ def create_daily(conn, current_rundown):
     stage = ",".join(str(i.value) for i in utils.get_random_stage(current_rundown))
 
     conn.execute(
-        "INSERT INTO randomiser.daily(loadout_date, player1, player2, player3, player4, stage) VALUES(%s, %s, %s, %s, %s, %s);",
+        "INSERT INTO daily(loadout_date, player1, player2, player3, player4, stage) VALUES(%s, %s, %s, %s, %s, %s);",
         (date, p1, p2, p3, p4, stage)
     )
 
@@ -41,7 +41,7 @@ def db_out_to_enums(db_result):
 def get_daily(pool):
     date = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d")
     with utils.acquire_conn(pool) as conn:
-        daily = conn.fetchone("SELECT player1, player2, player3, player4, stage FROM randomiser.daily WHERE loadout_date = %s;", (date,))
+        daily = conn.fetchone("SELECT player1, player2, player3, player4, stage FROM daily WHERE loadout_date = %s;", (date,))
         if daily is None:
             daily = create_daily(conn, CURRENT_RUNDOWN)
     return db_out_to_enums(daily)
