@@ -77,7 +77,7 @@ def loadout_to_json(loadout):
     return {
         "primary": str(loadout[0]),
         "special": str(loadout[1]),
-        "utililty": str(loadout[2]),
+        "utility": str(loadout[2]),
         "melee": str(loadout[3])
     }
 

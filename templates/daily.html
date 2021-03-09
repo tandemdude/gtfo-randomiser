@@ -2,10 +2,15 @@
 <html lang="en">
     <link rel="stylesheet" href="../static/styles.css">
 
+    <script src="../static/countdown.js"></script>
     <title>GTFO Loadout Randomiser</title>
     <body>
         <div class="header">
             <h1>GTFO Loadout Randomiser</h1>
+        </div>
+
+        <div style="text-align: center; padding: 20px;">
+            <h1>Daily Challenge</h1>
         </div>
 
         <div class="card-container">
@@ -26,6 +31,10 @@
                 <h2>Stage: <span class="data">{{ stage }}</span></h2>
                 <h2>Difficulty: <span class="data">{{ difficulty }}</span></h2>
             </div>
+        </div>
+
+        <div class="countdown">
+            <p>Time Until Next Daily Challenge: <span class="data" id="countdown"></span></p>
         </div>
     </body>
 </html>

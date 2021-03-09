@@ -1,3 +1,13 @@
+.countdown {
+    text-align: center;
+    padding: 50px;
+    font-size: xx-large;
+    max-width: 50%;
+    margin: auto;
+    color: #99aab5;
+    font-weight: bold;
+}
+
 .data {
     color: #7289da;
     font-weight: bold;
