@@ -18,7 +18,6 @@ PLAYERS = [1, 2, 3, 4]
 
 @app.before_first_request
 def server_setup():
-    print("INITIALISING DATABASE")
     utils.init_db(POOL)
 
 
