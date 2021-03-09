@@ -1,0 +1,39 @@
+<!doctype HTML>
+<html lang="en">
+    <link rel="stylesheet" href="../static/styles.css">
+    <script src="../static/get_data.js"></script>
+
+    <title>GTFO Loadout Randomiser</title>
+    <body>
+        <div class="header">
+            <h1>GTFO Loadout Randomiser</h1>
+        </div>
+
+        <div class="card-container">
+            {% for player in players %}
+                <div class="card">
+                    <h2>Player {{player}}</h2>
+                    <div id={{player}}>
+                        {% for line, data in player_card_default_data %}
+                            <p>{{ line }} <span class="data">{{ data }}</span></p>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+
+        <div class="card-container">
+            <div class="card" style="margin: auto;max-width: 50%;">
+                <h2>Stage: <span class="data" id="stage">...</span></h2>
+                <h2>Difficulty: <span class="data" id="difficulty">...</span></h2>
+            </div>
+        </div>
+
+        <div class="button-container">
+            <h2>Generate Random Loadout</h2>
+            {% for rundown in rundown_ids %}
+                <button class="button" onclick="get_loadout({{rundown}})">Rundown {{ rundown }}</button>
+            {% endfor %}
+        </div>
+    </body>
+</html>
