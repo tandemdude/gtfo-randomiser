@@ -15,6 +15,7 @@ class Connection:
                 curs.execute(query)
             else:
                 curs.execute(query, args)
+        self._conn.commit()
 
     def fetch(self, query, args=None):
         with self._conn.cursor() as curs:
@@ -23,6 +24,7 @@ class Connection:
             else:
                 curs.execute(query, args)
 
+            self._conn.commit()
             return curs.fetchall()
 
     def fetchone(self, query, args=None):
@@ -32,7 +34,8 @@ class Connection:
             else:
                 curs.execute(query, args)
 
-            return curs.fetchone()
+                self._conn.commit()
+                return curs.fetchone()
 
 
 @contextlib.contextmanager
@@ -41,7 +44,6 @@ def acquire_conn(pool):
     try:
         yield Connection(conn)
     finally:
-        conn.commit()
         pool.putconn(conn)
 
 
