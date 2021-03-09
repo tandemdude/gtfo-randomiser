@@ -9,6 +9,7 @@ import daily as daily_
 
 app = flask.Flask(__name__)
 POOL = pool.ThreadedConnectionPool(3, 10, os.environ["DATABASE_URL"], sslmode="require")
+utils.init_db(POOL)
 
 RUNDOWNS = utils.get_rundown_data()
 
