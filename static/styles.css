@@ -31,7 +31,19 @@
     flex: 1 1 0px;
 }
 
+.header-title {
+    text-align: center;
+    float: left;
+}
+
+.header-item {
+    text-align: center;
+    float: right;
+    flex-grow: 1;
+}
+
 .header {
+    display: flex;
     text-align: center;
     background: #23272a;
     padding: 10px;
@@ -64,6 +76,10 @@
 
 h1, h2 {
     color: #99aab5;
+}
+
+a {
+    text-decoration: none;
 }
 
 body {
