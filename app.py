@@ -1,8 +1,10 @@
 import os
+import time
 
 import flask
 from flask import request
 from psycopg2 import pool
+from psycopg2 import OperationalError
 
 import utils
 import daily as daily_
@@ -33,7 +35,19 @@ def index():
 
 @app.route("/daily")
 def daily():
-    d = daily_.get_daily(POOL)
+    success = False
+    for _ in range(5):
+        try:
+            d = daily_.get_daily(POOL)
+            success = True
+            break
+        except OperationalError:
+            time.sleep(0.2)
+            continue
+
+    if not success:
+        return flask.render_template("error.html")
+
     players = enumerate(
         [(("Primary:", str(p[0])), ("Special:", str(p[1])), ("Utility:", str(p[2])), ("Melee:", str(p[3]))) for p in d["players"]],
         start=1
