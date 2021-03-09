@@ -41,6 +41,7 @@ def acquire_conn(pool):
     try:
         yield Connection(conn)
     finally:
+        conn.commit()
         pool.putconn(conn)
 
 
