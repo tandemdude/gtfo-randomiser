@@ -59,7 +59,7 @@ def get_daily_runs(pool):
         rows = conn.fetch("SELECT run_id, run_time, evidence_url, run_verified FROM daily_runs WHERE run_date = %s ORDER BY run_time DESC LIMIT 20;", (date,))
         if not rows:
             return [(1, "No Data", "https://www.youtube.com/watch?v=dQw4w9WgXcQ", "Verified", "No Data")]
-    return [(i, _seconds_to_time_string(row[1]), row[2], "Verified" if row[3] else "Unverified", row[0]) for i, row in enumerate(rows, start=1)]
+    return [(i, _seconds_to_time_string(row[1]), row[2], "Yes" if row[3] else "No", row[0]) for i, row in enumerate(rows, start=1)]
 
 
 def add_daily_run(pool, time_str, evidence_url):
