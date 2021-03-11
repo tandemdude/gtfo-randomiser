@@ -64,6 +64,10 @@ def get_daily_runs(pool):
 
 def add_daily_run(pool, time_str, evidence_url):
     date = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d")
+
+    h, m, s = time_str.split(":")
+    total_seconds = (int(h) * 60 * 60) + (int(m) * 60) + int(s)
+
     with utils.acquire_conn(pool) as conn:
-        run_id = conn.fetchone("INSERT INTO daily_runs(run_date, run_time, evidence_url) VALUES(%s, %s, %s) RETURNING run_id;", (date, time_str, evidence_url))
+        run_id = conn.fetchone("INSERT INTO daily_runs(run_date, run_time, evidence_url) VALUES(%s, %s, %s) RETURNING run_id;", (date, total_seconds, evidence_url))
     return run_id[0]
