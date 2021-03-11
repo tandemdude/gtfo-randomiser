@@ -52,19 +52,19 @@
             <form action="/api/submit_daily" method="post">
                 <div class="form-item">
                     <label for="hours">Time to complete:</label>
-                    <select id="hours" name="hours">
+                    <select id="hours" name="hours" required>
                         {% for i in range(24) %}
                             <option value={{ i }}>{{ i }}</option>
                         {% endfor %}
                     </select>
                     <label for="minutes">h</label>
-                    <select id="minutes" name="minutes">
+                    <select id="minutes" name="minutes" required>
                         {% for i in range(60) %}
                             <option value={{ i }}>{{ i }}</option>
                         {% endfor %}
                     </select>
                     <label for="seconds">m</label>
-                    <select id="seconds" name="seconds">
+                    <select id="seconds" name="seconds" required>
                         {% for i in range(60) %}
                             <option value={{ i }}>{{ i }}</option>
                         {% endfor %}
@@ -73,7 +73,7 @@
                 </div>
                 <div class="form-item">
                     <label for="imagelink">Evidence URL:</label>
-                    <input type="url" id="imagelink" name="imagelink"><br>
+                    <input type="url" id="imagelink" name="imagelink" required><br>
                 </div>
                 <div class="form-item">
                     <input type="submit" value="Submit" class="button">
