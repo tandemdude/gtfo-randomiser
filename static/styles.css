@@ -1,3 +1,46 @@
+.divTable{
+	display: table;
+	width: 80%;
+    margin: auto;
+    padding-top: 50px;
+}
+
+.divTableRow {
+	display: table-row;
+}
+
+.divTableCell {
+	border: 1px solid #999999;
+    border-radius: 10px;
+	display: table-cell;
+	padding: 3px 10px;
+    background: rgba(35,39,42,0.6);
+    text-align: center;
+    color: #99aab5;
+}
+
+.divTableBody {
+	display: table-row-group;
+}
+
+.footer {
+    padding: 50px;
+}
+
+.form {
+    border: 5px solid #99aab5;
+    border-radius: 10px;
+    color: #99aab5;
+    max-width: 40%;
+    margin: auto;
+}
+
+.form-item {
+    text-align: center;
+    position: relative;
+    padding: 10px;
+}
+
 .countdown {
     text-align: center;
     padding: 50px;

@@ -5,7 +5,12 @@ function get_loadout(rundown_id) {
             data => {
                 for (let key in data) {
                     if (/\d$/.test(key)) {
-                        document.getElementById(key).innerHTML = `<p>Primary: <span class='data'>${data[key]['primary']}</span></p><p>Special: <span class='data'>${data[key]['special']}</span></p><p>Utility: <span class='data'>${data[key]['utility']}</span></p><p>Melee: <span class='data'>${data[key]['melee']}</span></p>`;
+                        document.getElementById(key).innerHTML = `
+                            <p>Primary: <span class='data'>${data[key]['primary']}</span></p>
+                            <p>Special: <span class='data'>${data[key]['special']}</span></p>
+                            <p>Utility: <span class='data'>${data[key]['utility']}</span></p>
+                            <p>Melee: <span class='data'>${data[key]['melee']}</span></p>
+                        `;
                     } else {
                         document.getElementById("stage").innerHTML = data["stage"]["stage"];
                         document.getElementById("difficulty").innerHTML = data["stage"]["difficulty"];
