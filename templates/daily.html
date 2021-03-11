@@ -41,5 +41,67 @@
         <div class="countdown">
             <p>Time Until Next Daily Challenge: <span class="data" id="countdown"></span></p>
         </div>
+
+        <hr style="max-width: 80%">
+
+        <div style="text-align: center; padding: 20px;">
+            <h1>Leaderboard</h1>
+        </div>
+
+        <div class="form">
+            <form action="/api/submit_daily" method="post">
+                <div class="form-item">
+                    <label for="hours">Time to complete:</label>
+                    <select id="hours" name="hours">
+                        {% for i in range(24) %}
+                            <option value={{ i }}>{{ i }}</option>
+                        {% endfor %}
+                    </select>
+                    <label for="minutes">h</label>
+                    <select id="minutes" name="minutes">
+                        {% for i in range(60) %}
+                            <option value={{ i }}>{{ i }}</option>
+                        {% endfor %}
+                    </select>
+                    <label for="seconds">m</label>
+                    <select id="seconds" name="seconds">
+                        {% for i in range(60) %}
+                            <option value={{ i }}>{{ i }}</option>
+                        {% endfor %}
+                    </select>
+                    s
+                </div>
+                <div class="form-item">
+                    <label for="imagelink">Evidence URL:</label>
+                    <input type="url" id="imagelink" name="imagelink"><br>
+                </div>
+                <div class="form-item">
+                    <input type="submit" value="Submit" class="button">
+                </div>
+            </form>
+        </div>
+
+        <div class="divTable">
+            <div class="divTableBody">
+                <div class="divTableRow">
+                    <div class="divTableHeader">Position</div>
+                    <div class="divTableHeader">Completion Time</div>
+                    <div class="divTableHeader">Evidence</div>
+                    <div class="divTableHeader">Verified</div>
+                    <div class="divTableHeader">Run ID</div>
+                </div>
+                {% for pos, time, url, verif, rid in runs_data %}
+                    <div class="divTableRow">
+                        <div class="divTableCell">{{ pos }}</div>
+                        <div class="divTableCell">{{ time }}</div>
+                        <div class="divTableCell"><a class="link" href={{ url }}>Click Here</a></div>
+                        <div class="divTableCell">{{ verif }}</div>
+                        <div class="divTableCell">{{ rid }}</div>
+                    </div>
+                {% endfor %}}
+            </div>
+        </div>
+
+        <div class="footer"></div>
     </body>
 </html>

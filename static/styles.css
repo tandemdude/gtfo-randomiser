@@ -1,26 +1,37 @@
 .divTable{
-	display: table;
-	width: 80%;
+    display: table;
+    width: 80%;
     margin: auto;
     padding-top: 50px;
 }
 
+.divTableHeader {
+    background: #23272a;
+    text-align: center;
+    font-weight: bold;
+    color: #99aab5;
+    border: 1px solid #999999;
+    border-radius: 10px;
+    display: table-cell;
+    padding: 3px 10px;
+}
+
 .divTableRow {
-	display: table-row;
+    display: table-row;
 }
 
 .divTableCell {
-	border: 1px solid #999999;
+    border: 1px solid #999999;
     border-radius: 10px;
-	display: table-cell;
-	padding: 3px 10px;
+    display: table-cell;
+    padding: 3px 10px;
     background: rgba(35,39,42,0.6);
     text-align: center;
     color: #99aab5;
 }
 
 .divTableBody {
-	display: table-row-group;
+    display: table-row-group;
 }
 
 .footer {
@@ -109,16 +120,25 @@
 }
 
 .button:active {
-  background: #202527;
-  transform: translateY(4px);
+    background: #202527;
+    transform: translateY(4px);
 }
 
 .button:hover {
-    background: #202527
+    background: #202527;
+    color: #4259aa;
 }
 
 h1, h2 {
     color: #99aab5;
+}
+
+.link {
+    color: #7289da;
+}
+
+.link:hover {
+    color: #4259aa;
 }
 
 a {

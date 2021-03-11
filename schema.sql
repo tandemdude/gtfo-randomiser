@@ -6,3 +6,11 @@ CREATE TABLE IF NOT EXISTS daily (
     player4 VARCHAR(20) NOT NULL,
     stage VARCHAR(20) NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS daily_runs (
+    run_id SERIAL PRIMARY KEY,
+    run_date VARCHAR(10) NOT NULL,
+    run_time INTEGER NOT NULL,
+    evidence_url VARCHAR(255) NOT NULL UNIQUE,
+    run_verified BOOLEAN NOT NULL DEFAULT FALSE
+);

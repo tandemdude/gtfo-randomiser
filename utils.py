@@ -52,7 +52,8 @@ def init_db(pool):
         schema = fp.read()
 
     with acquire_conn(pool) as conn:
-        conn.execute(schema)
+        for table in schema.split(";"):
+            conn.execute(table.strip())
 
 
 @functools.lru_cache(maxsize=None)
