@@ -51,8 +51,10 @@ def init_db(pool):
     with open("schema.sql") as fp:
         schema = fp.read()
 
+    tables = [t.strip() for t in schema.split(";") if t.strip()]
+
     with acquire_conn(pool) as conn:
-        for table in schema.split(";"):
+        for table in tables:
             conn.execute(table.strip())
 
 
