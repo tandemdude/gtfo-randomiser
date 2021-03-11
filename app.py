@@ -72,6 +72,7 @@ def submit_daily():
             ]
         }
     )
+    return flask.redirect(flask.url_for("/daily"))
 
 
 @app.route("/api/random_player_loadout")
