@@ -3,7 +3,7 @@ import time
 
 import requests
 import flask
-from flask import request
+from flask import request, Response
 from psycopg2 import pool
 from psycopg2 import OperationalError
 
@@ -19,6 +19,7 @@ RUNDOWNS = utils.get_rundown_data()
 EMPTY_CARD = [("Primary:", "..."), ("Special:", "..."), ("Utility:", "..."), ("Melee:", "...")]
 PLAYERS = [1, 2, 3, 4]
 VERIFICATION_WEBHOOK = os.environ["VERIFICATION_WEBHOOK"]
+VERIFICATION_TOKEN = os.environ["VERIFICATION_TOKEN"]
 
 
 @app.route("/")
@@ -73,6 +74,26 @@ def submit_daily():
         }
     )
     return flask.redirect(flask.url_for("daily"))
+
+
+@app.route("/api/verify_daily_run", methods=["POST"])
+def verify_daily_run():
+    if request.headers["Authorisation"] != VERIFICATION_TOKEN:
+        return Response(status=403)
+
+    daily_.verify_daily(POOL, int(request.args["run_id"]))
+
+    return Response(status=200)
+
+
+@app.route("/api/reject_daily_run", methods=["POST"])
+def reject_daily_run():
+    if request.headers["Authorisation"] != VERIFICATION_TOKEN:
+        return Response(status=403)
+
+    daily_.reject_daily(POOL, int(request.args["run_id"]))
+
+    return Response(status=200)
 
 
 @app.route("/api/random_player_loadout")

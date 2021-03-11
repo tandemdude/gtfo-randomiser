@@ -71,3 +71,13 @@ def add_daily_run(pool, time_str, evidence_url):
     with utils.acquire_conn(pool) as conn:
         run_id = conn.fetchone("INSERT INTO daily_runs(run_date, run_time, evidence_url) VALUES(%s, %s, %s) RETURNING run_id;", (date, total_seconds, evidence_url))
     return run_id[0]
+
+
+def verify_daily(pool, run_id):
+    with utils.acquire_conn(pool) as conn:
+        conn.execute("UPDATE daily_runs SET run_verified = %s WHERE run_id = %s;", (True, run_id))
+
+
+def reject_daily(pool, run_id):
+    with utils.acquire_conn(pool) as conn:
+        conn.execute("DELETE FROM daily_runs WHERE run_id = %s", (run_id,))
