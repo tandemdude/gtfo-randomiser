@@ -118,3 +118,29 @@ def random_full_loadout():
         "4": utils.loadout_to_json(utils.get_random_loadout(rundown_id)),
         "stage": utils.stage_to_json(utils.get_random_stage(rundown_id))
     }
+
+
+@app.route("/api/daily")
+def get_daily_loadout():
+    success = False
+    for _ in range(5):
+        try:
+            d = daily_.get_daily(POOL)
+            success = True
+            break
+        except OperationalError:
+            time.sleep(0.2)
+            continue
+
+    if not success:
+        return Response(status=500)
+
+    return {
+        "players": {
+            "1": utils.loadout_to_json(d["players"][0]),
+            "2": utils.loadout_to_json(d["players"][1]),
+            "3": utils.loadout_to_json(d["players"][2]),
+            "4": utils.loadout_to_json(d["players"][3]),
+        },
+        "stage": utils.stage_to_json(d["stage"]),
+    }
