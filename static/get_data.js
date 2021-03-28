@@ -3,7 +3,7 @@ function get_loadout(rundown_id) {
         .then(response => response.json())
         .then(
             data => {
-                for (let key in data['players']) {
+                for (let key in {"1": null, "2": null, "3": null, "4": null}) {
                     if (/\d$/.test(key)) {
                         document.getElementById(key).innerHTML = `
                             <p>Primary: <span class='data'>${data['players'][key]['primary']}</span></p>
