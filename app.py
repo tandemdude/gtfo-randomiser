@@ -65,6 +65,7 @@ def submit_daily():
     requests.post(
         VERIFICATION_WEBHOOK,
         json={
+            "content": "<@&823030353551818752>",
             "embeds": [
                 {
                     "title": "New run submitted",
