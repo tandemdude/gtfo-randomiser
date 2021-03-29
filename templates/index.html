@@ -16,7 +16,7 @@
             </div>
             <div class="header-item" style="flex-grow: 0; margin-top: auto; margin-bottom: auto">
                 <a href="https://discord.gg/bQn6DYyt5X" target="_blank">
-                    <h3 style="color: #4259aa">Discord<br>Server</h3>
+                    <h3 style="color: #7289da">Discord<br>Server</h3>
                 </a>
             </div>
         </div>
@@ -46,6 +46,17 @@
             {% for rundown in rundown_ids %}
                 <button class="button" onclick="get_loadout({{rundown}})">Rundown {{ rundown }}</button>
             {% endfor %}
+        </div>
+
+        <hr style="max-width: 80%">
+
+        <h2 style="text-align: center; padding-top: 50px">Challenge too easy?<br>Try with a handicap:</h2>
+        <div class="card-container">
+            <div class="card" style="max-width: 50%; margin: auto;">
+                <h2>Handicap:<br><span class="data" id="handicap">{{ handicap }}</span></h2>
+                <button class="button" onclick="get_handicap()">Reroll handicap</button>
+                <p>Join the <a href="https://discord.gg/bQn6DYyt5X" target="_blank"><span class="data">Discord Server</span></a> to suggest new handicaps.</p>
+            </div>
         </div>
     </body>
 </html>

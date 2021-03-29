@@ -66,6 +66,14 @@ def get_rundown_data():
     return rundowns.load_rundown_info(conf)
 
 
+@functools.lru_cache(maxsize=None)
+def get_extra_challenges():
+    with open("rundown_data/extra_challenges.json") as fp:
+        data = json.load(fp)
+
+    return data["challenges"]
+
+
 def get_random_loadout(rundown_id):
     _rundowns = get_rundown_data()
     return (

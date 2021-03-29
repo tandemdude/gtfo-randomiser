@@ -1,0 +1,15 @@
+{
+  "challenges": [
+    "Play on 20 FOV",
+    "Play on max FOV",
+    "Unbind your left and right strafe keys",
+    "Don't use your melee weapon",
+    "Utility (mines, C-Foam, etc) are forbidden",
+    "Do not use any ammo packs",
+    "You must keep all scouts alive (if applicable)",
+    "Set your mouse sensitivity to the minimum",
+    "Disable your HUD (set the opacity to 0)",
+    "No walking or crouching (sprint as much as possible)",
+    "No using the fog turbine (if applicable)"
+  ]
+}

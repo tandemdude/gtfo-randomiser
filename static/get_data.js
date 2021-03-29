@@ -19,3 +19,13 @@ function get_loadout(rundown_id) {
             }
         )
 }
+
+function get_handicap() {
+    fetch("/api/random_handicap")
+        .then(response => response.json())
+        .then(
+            data => {
+                document.getElementById("handicap").innerHTML = data["handicap"]
+            }
+        )
+}

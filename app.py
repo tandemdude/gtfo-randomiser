@@ -1,5 +1,6 @@
 import os
 import time
+import random
 
 import requests
 import flask
@@ -15,6 +16,7 @@ POOL = pool.ThreadedConnectionPool(3, 10, os.environ["DATABASE_URL"])
 utils.init_db(POOL)
 
 RUNDOWNS = utils.get_rundown_data()
+EXTRA_CHALLENGES = utils.get_extra_challenges()
 
 EMPTY_CARD = [("Primary:", "..."), ("Special:", "..."), ("Utility:", "..."), ("Melee:", "...")]
 PLAYERS = [1, 2, 3, 4]
@@ -28,7 +30,8 @@ def index():
         "index.html",
         player_card_default_data=EMPTY_CARD,
         players=PLAYERS,
-        rundown_ids=[r.id for r in RUNDOWNS.values()]
+        rundown_ids=[r.id for r in RUNDOWNS.values()],
+        handicap=random.choice(EXTRA_CHALLENGES)
     )
 
 
@@ -153,4 +156,10 @@ def get_daily_loadout():
             "4": utils.loadout_to_json(d["players"][3]),
         },
         "stage": utils.stage_to_json(d["stage"]),
+    }
+
+@app.route("/api/random_handicap")
+def get_random_handicap():
+    return {
+        "handicap": random.choice(EXTRA_CHALLENGES),
     }
