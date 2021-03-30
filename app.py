@@ -43,7 +43,7 @@ def daily():
     if not data:
         return flask.render_template("error.html")
 
-    if len(data) == 5:
+    if extra_data is not None:
         return flask.render_template("daily.html", players=data[0], stage=data[1], difficulty=data[2], runs_data=data[3], prev_hs_data=data[5], prev_hs_date=extra_data, prev_hs_available_dates=data[4])
     return flask.render_template("daily.html", players=data[0], stage=data[1], difficulty=data[2], runs_data=data[3], prev_hs_available_dates=data[4])
 
