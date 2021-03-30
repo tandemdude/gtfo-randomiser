@@ -14,6 +14,12 @@
 
         <link rel="stylesheet" href="../static/styles.css">
         <script src="../static/countdown.js"></script>
+
+        {% if prev_hs_data %}
+            <script>
+                document.getElementById("prev_leaderboard").scrollIntoView();
+            </script>
+        {% endif %}
     </head>
     <body>
         <div class="header">
@@ -144,7 +150,7 @@
         </div>
 
         {% if prev_hs_data %}
-            <h3 style="text-align: center; padding-top: 50px; color: #99aab5">Leaderboard for <span class="data">{{ prev_hs_date }}</span></h3>
+            <h3 style="text-align: center; padding-top: 50px; color: #99aab5" id="prev_leaderboard">Leaderboard for <span class="data">{{ prev_hs_date }}</span></h3>
 
         <div class="divTable">
             <div class="divTableBody">
