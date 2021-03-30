@@ -10,6 +10,8 @@
     "Set your mouse sensitivity to the minimum",
     "Disable your HUD (set the opacity to 0)",
     "No walking or crouching (sprint as much as possible)",
-    "No using the fog turbine (if applicable)"
+    "No using the fog turbine (if applicable)",
+    "Reversed movement (S is forward, W is backward, etc)",
+    "You must crouch through every non-cleared room and every enemy wave"
   ]
 }
