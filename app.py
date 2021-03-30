@@ -44,8 +44,8 @@ def daily():
         return flask.render_template("error.html")
 
     if len(data) == 5:
-        return flask.render_template("daily.html", players=data[0], stage=data[1], difficulty=data[2], runs_data=data[3], prev_hs_data=data[4], prev_hs_date=extra_data)
-    return flask.render_template("daily.html", players=data[0], stage=data[1], difficulty=data[2], runs_data=data[3])
+        return flask.render_template("daily.html", players=data[0], stage=data[1], difficulty=data[2], runs_data=data[3], prev_hs_data=data[5], prev_hs_date=extra_data, prev_hs_available_dates=data[4])
+    return flask.render_template("daily.html", players=data[0], stage=data[1], difficulty=data[2], runs_data=data[3], prev_hs_available_dates=data[4])
 
 
 @app.route("/api/submit_daily", methods=["POST"])
