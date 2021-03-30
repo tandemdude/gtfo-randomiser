@@ -37,25 +37,15 @@ def index():
 
 @app.route("/daily")
 def daily():
-    success = False
-    for _ in range(5):
-        try:
-            d = daily_.get_daily(POOL)
-            runs = daily_.get_daily_runs(POOL)
-            success = True
-            break
-        except OperationalError:
-            time.sleep(0.2)
-            continue
+    extra_data = request.args.get("prev_highscore")
 
-    if not success:
+    data = utils.get_daily_data(POOL, extra_data=extra_data)
+    if not data:
         return flask.render_template("error.html")
 
-    players = enumerate(
-        [(("Primary:", str(p[0])), ("Special:", str(p[1])), ("Utility:", str(p[2])), ("Melee:", str(p[3]))) for p in d["players"]],
-        start=1
-    )
-    return flask.render_template("daily.html", players=players, stage=d["stage"][0], difficulty=d["stage"][1], runs_data=runs)
+    if len(data) == 5:
+        return flask.render_template("daily.html", players=data[0], stage=data[1], difficulty=data[2], runs_data=data[3], prev_hs_data=data[4], prev_hs_date=extra_data)
+    return flask.render_template("daily.html", players=data[0], stage=data[1], difficulty=data[2], runs_data=data[3])
 
 
 @app.route("/api/submit_daily", methods=["POST"])

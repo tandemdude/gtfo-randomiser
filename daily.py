@@ -81,3 +81,19 @@ def verify_daily(pool, run_id):
 def reject_daily(pool, run_id):
     with utils.acquire_conn(pool) as conn:
         conn.execute("DELETE FROM daily_runs WHERE run_id = %s", (run_id,))
+
+
+def get_previous_leaderboard(pool, date):
+    with utils.acquire_conn(pool) as conn:
+        rows = conn.fetch("SELECT run_id, run_time, evidence_url, run_verified FROM daily_runs WHERE run_date = %s ORDER BY run_time ASC LIMIT 20;", (date,))
+        if not rows:
+            return [(1, "No Data", "https://www.youtube.com/watch?v=dQw4w9WgXcQ", "Yes", "No Data")]
+    return [(i, _seconds_to_time_string(row[1]), row[2], "Yes" if row[3] else "No", row[0]) for i, row in enumerate(rows, start=1)]
+
+
+def get_previous_daily_dates(pool):
+    with utils.acquire_conn(pool) as conn:
+        rows = conn.fetch("SELECT DISTINCT run_date FROM daily_runs;")
+        if not rows:
+            return [datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d")]
+    return [row[0] for row in rows]

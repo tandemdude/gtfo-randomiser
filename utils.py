@@ -1,8 +1,13 @@
 import contextlib
 import functools
 import json
+import time
+
+import flask
+from psycopg2 import OperationalError
 
 import rundowns
+import daily as daily_
 
 
 class Connection:
@@ -105,3 +110,30 @@ def stage_to_json(stage):
         "stage": str(stage[0]),
         "difficulty": str(stage[1])
     }
+
+
+def get_daily_data(POOL, extra_data=None):
+    success = False
+    for _ in range(5):
+        try:
+            d = daily_.get_daily(POOL)
+            runs = daily_.get_daily_runs(POOL)
+            success = True
+            break
+        except OperationalError:
+            time.sleep(0.2)
+            continue
+
+    if not success:
+        return False
+
+    players = enumerate(
+        [(("Primary:", str(p[0])), ("Special:", str(p[1])), ("Utility:", str(p[2])), ("Melee:", str(p[3]))) for p in
+         d["players"]],
+        start=1
+    )
+    if extra_data is None:
+        return players, d["stage"][0], d["stage"][1], runs, daily_.get_previous_daily_dates(POOL)
+
+    prev_runs = daily_.get_previous_leaderboard(POOL, extra_data)
+    return players, d["stage"][0], d["stage"][1], runs, daily_.get_previous_daily_dates(POOL), prev_runs
