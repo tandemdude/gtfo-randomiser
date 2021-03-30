@@ -37,9 +37,7 @@ def index():
 
 @app.route("/daily")
 def daily():
-    extra_data = request.args.get("prev_highscore")
-    if extra_data is not None:
-        extra_data = request.form["prev_dailies"]
+    extra_data = request.args.get("prev_dailies")
 
     data = daily_.get_daily_data(POOL, extra_data=extra_data)
     if not data:
