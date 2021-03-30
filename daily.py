@@ -1,7 +1,10 @@
 import datetime
+import enums
+import time
+
+from psycopg2 import OperationalError
 
 import utils
-import enums
 
 RUNDOWNS = utils.get_rundown_data()
 CURRENT_RUNDOWN = 4
@@ -97,3 +100,30 @@ def get_previous_daily_dates(pool):
         if not rows:
             return [datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d")]
     return [row[0] for row in rows]
+
+
+def get_daily_data(POOL, extra_data=None):
+    success = False
+    for _ in range(5):
+        try:
+            d = get_daily(POOL)
+            runs = get_daily_runs(POOL)
+            success = True
+            break
+        except OperationalError:
+            time.sleep(0.2)
+            continue
+
+    if not success:
+        return False
+
+    players = enumerate(
+        [(("Primary:", str(p[0])), ("Special:", str(p[1])), ("Utility:", str(p[2])), ("Melee:", str(p[3]))) for p in
+         d["players"]],
+        start=1
+    )
+    if extra_data is None:
+        return players, d["stage"][0], d["stage"][1], runs, get_previous_daily_dates(POOL)
+
+    prev_runs = get_previous_leaderboard(POOL, extra_data)
+    return players, d["stage"][0], d["stage"][1], runs, get_previous_daily_dates(POOL), prev_runs

@@ -39,7 +39,7 @@ def index():
 def daily():
     extra_data = request.args.get("prev_highscore")
 
-    data = utils.get_daily_data(POOL, extra_data=extra_data)
+    data = daily_.get_daily_data(POOL, extra_data=extra_data)
     if not data:
         return flask.render_template("error.html")
 
