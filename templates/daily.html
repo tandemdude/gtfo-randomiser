@@ -131,9 +131,9 @@
             <div class="form-item">
                 <label for="prev_dailies">Get leaderboard for:</label>
                 <select id="prev_dailies" name="prev_dailies" required>
-                    {{% for date in prev_hs_available_dates %}}
+                    {% for date in prev_hs_available_dates %}
                         <option value={{ date }}>{{ date }}</option>
-                    {{% endfor %}}
+                    {% endfor %}
                 </select>
             </div>
             <div class="form-item">
@@ -141,7 +141,7 @@
             </div>
         </div>
 
-        {{% if prev_hs_data %}}
+        {% if prev_hs_data %}
             <h3 style="text-align: center; padding-top: 50px; color: #99aab5">Leaderboard for <span class="data">{{ prev_hs_date }}</span></h3>
 
         <div class="divTable">
