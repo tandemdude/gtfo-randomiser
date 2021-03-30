@@ -1,6 +1,7 @@
 import os
 import time
 import random
+import datetime
 
 import requests
 import flask
@@ -43,9 +44,11 @@ def daily():
     if not data:
         return flask.render_template("error.html")
 
+    dates = sorted(data[4], key=lambda s: datetime.date(*[int(part) for part in s.split("-")]))
+
     if extra_data is not None:
-        return flask.render_template("daily.html", players=data[0], stage=data[1], difficulty=data[2], runs_data=data[3], prev_hs_data=data[5], prev_hs_date=extra_data, prev_hs_available_dates=data[4])
-    return flask.render_template("daily.html", players=data[0], stage=data[1], difficulty=data[2], runs_data=data[3], prev_hs_available_dates=data[4])
+        return flask.render_template("daily.html", players=data[0], stage=data[1], difficulty=data[2], runs_data=data[3], prev_hs_data=data[5], prev_hs_date=extra_data, prev_hs_available_dates=dates)
+    return flask.render_template("daily.html", players=data[0], stage=data[1], difficulty=data[2], runs_data=data[3], prev_hs_available_dates=dates)
 
 
 @app.route("/api/submit_daily", methods=["POST"])
