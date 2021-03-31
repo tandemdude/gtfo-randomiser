@@ -1,3 +1,22 @@
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #2c2f33;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #23272a;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #202527;
+}
+
 .divTable{
     display: table;
     width: 80%;
