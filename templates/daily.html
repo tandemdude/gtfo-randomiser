@@ -16,9 +16,11 @@
         <script src="../static/countdown.js"></script>
 
         {% if prev_hs_data %}
-            <script>
-                document.getElementById("prev_leaderboard").scrollIntoView();
-            </script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                document.getElementById("prev_leaderboard").scrollIntoView({behavior: "smooth"});
+            }, false);
+        </script>
         {% endif %}
     </head>
     <body>
