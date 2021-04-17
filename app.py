@@ -128,10 +128,12 @@ def random_full_loadout():
 
 @app.route("/api/daily")
 def get_daily_loadout():
+    date = request.args.get("date")
+
     success = False
     for _ in range(5):
         try:
-            d = daily_.get_daily(POOL)
+            d = daily_.get_daily(POOL, date)
             success = True
             break
         except OperationalError:
@@ -151,8 +153,16 @@ def get_daily_loadout():
         "stage": utils.stage_to_json(d["stage"]),
     }
 
+
 @app.route("/api/random_handicap")
 def get_random_handicap():
     return {
         "handicap": random.choice(EXTRA_CHALLENGES),
+    }
+
+
+@app.route("/api/handicaps")
+def get_handicaps():
+    return {
+        "handicaps": EXTRA_CHALLENGES,
     }

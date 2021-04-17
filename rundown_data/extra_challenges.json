@@ -13,6 +13,13 @@
     "No using the fog turbine (if applicable)",
     "Reversed movement (S is forward, W is backward, etc)",
     "You must crouch through every non-cleared room and every enemy wave",
-    "You must trigger every scout that you encounter"
+    "You must trigger every scout that you encounter",
+    "Don't open any doors. You must break them down or not enter the room",
+    "Play the entire stage on 20% hp only",
+    "You cannot use the map under any circumstance",
+    "No using terminals except for commands required for objectives",
+    "Only walk sideways and backwards (unbind your walk forward key)",
+    "No killing enemies unless they are already awake",
+    "Swap the keybinds for your shoot and aim buttons"
   ]
 }
