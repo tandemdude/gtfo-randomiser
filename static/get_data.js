@@ -3,20 +3,17 @@ function get_loadout(rundown_id) {
         .then(response => response.json())
         .then(
             data => {
-                let _data = data
-                let stage = _data["stage"]
-                let players = _data["players"]
-                for (let key in players) {
+                for (let key in data.players) {
                     if (/\d$/.test(key)) {
                         document.getElementById(key).innerHTML = `
-                            <p>Primary: <span class='data'>${players[key]['primary']}</span></p>
-                            <p>Special: <span class='data'>${players[key]['special']}</span></p>
-                            <p>Utility: <span class='data'>${players[key]['utility']}</span></p>
-                            <p>Melee: <span class='data'>${players[key]['melee']}</span></p>
+                            <p>Primary: <span class='data'>${data.players[key]['primary']}</span></p>
+                            <p>Special: <span class='data'>${data.players[key]['special']}</span></p>
+                            <p>Utility: <span class='data'>${data.players[key]['utility']}</span></p>
+                            <p>Melee: <span class='data'>${data.players[key]['melee']}</span></p>
                         `;
                     } else {
-                        document.getElementById("stage").innerHTML = stage["stage"];
-                        document.getElementById("difficulty").innerHTML = stage["difficulty"];
+                        document.getElementById("stage").innerHTML = data.stage["stage"];
+                        document.getElementById("difficulty").innerHTML = data.stage["difficulty"];
                     }
                 }
             }
