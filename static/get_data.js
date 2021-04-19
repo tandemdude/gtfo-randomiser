@@ -3,8 +3,9 @@ function get_loadout(rundown_id) {
         .then(response => response.json())
         .then(
             data => {
-                let stage = data["stage"]
-                let players = data["players"]
+                let _data = data
+                let stage = _data["stage"]
+                let players = _data["players"]
                 for (let key in players) {
                     if (/\d$/.test(key)) {
                         document.getElementById(key).innerHTML = `
