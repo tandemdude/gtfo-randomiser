@@ -3,6 +3,7 @@ function get_loadout(rundown_id) {
         .then(response => response.json())
         .then(
             data => {
+                let stage = data["stage"]
                 let players = data["players"]
                 for (let key in players) {
                     if (/\d$/.test(key)) {
@@ -13,8 +14,8 @@ function get_loadout(rundown_id) {
                             <p>Melee: <span class='data'>${players[key]['melee']}</span></p>
                         `;
                     } else {
-                        document.getElementById("stage").innerHTML = data["stage"]["stage"];
-                        document.getElementById("difficulty").innerHTML = data["stage"]["difficulty"];
+                        document.getElementById("stage").innerHTML = stage["stage"];
+                        document.getElementById("difficulty").innerHTML = stage["difficulty"];
                     }
                 }
             }
