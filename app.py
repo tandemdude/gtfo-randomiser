@@ -108,22 +108,22 @@ def random_stage():
 @app.route("/api/random_full_loadout")
 def random_full_loadout():
     rundown_id = int(request.args["rundown_id"])
-    # return {
-    #     "players": {
-    #         "1": utils.loadout_to_json(utils.get_random_loadout(rundown_id)),
-    #         "2": utils.loadout_to_json(utils.get_random_loadout(rundown_id)),
-    #         "3": utils.loadout_to_json(utils.get_random_loadout(rundown_id)),
-    #         "4": utils.loadout_to_json(utils.get_random_loadout(rundown_id)),
-    #     },
-    #     "stage": utils.stage_to_json(utils.get_random_stage(rundown_id)),
-    # }
     return {
-        "1": utils.loadout_to_json(utils.get_random_loadout(rundown_id)),
-        "2": utils.loadout_to_json(utils.get_random_loadout(rundown_id)),
-        "3": utils.loadout_to_json(utils.get_random_loadout(rundown_id)),
-        "4": utils.loadout_to_json(utils.get_random_loadout(rundown_id)),
+        "players": {
+            "1": utils.loadout_to_json(utils.get_random_loadout(rundown_id)),
+            "2": utils.loadout_to_json(utils.get_random_loadout(rundown_id)),
+            "3": utils.loadout_to_json(utils.get_random_loadout(rundown_id)),
+            "4": utils.loadout_to_json(utils.get_random_loadout(rundown_id)),
+        },
         "stage": utils.stage_to_json(utils.get_random_stage(rundown_id)),
     }
+    # return {
+    #     "1": utils.loadout_to_json(utils.get_random_loadout(rundown_id)),
+    #     "2": utils.loadout_to_json(utils.get_random_loadout(rundown_id)),
+    #     "3": utils.loadout_to_json(utils.get_random_loadout(rundown_id)),
+    #     "4": utils.loadout_to_json(utils.get_random_loadout(rundown_id)),
+    #     "stage": utils.stage_to_json(utils.get_random_stage(rundown_id)),
+    # }
 
 
 @app.route("/api/daily")
