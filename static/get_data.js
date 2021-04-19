@@ -11,10 +11,9 @@ function get_loadout(rundown_id) {
                             <p>Utility: <span class='data'>${data.players[key]['utility']}</span></p>
                             <p>Melee: <span class='data'>${data.players[key]['melee']}</span></p>
                         `;
-                    } else {
-                        document.getElementById("stage").innerHTML = data.stage["stage"];
-                        document.getElementById("difficulty").innerHTML = data.stage["difficulty"];
                     }
+                    document.getElementById("stage").innerHTML = data.stage["stage"];
+                    document.getElementById("difficulty").innerHTML = data.stage["difficulty"];
                 }
             }
         )
