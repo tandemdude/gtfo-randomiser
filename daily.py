@@ -7,7 +7,7 @@ from psycopg2 import OperationalError
 import utils
 
 RUNDOWNS = utils.get_rundown_data()
-CURRENT_RUNDOWN = 4
+CURRENT_RUNDOWN = 5
 
 
 def create_daily(conn, current_rundown):

@@ -15,6 +15,10 @@ class Primary(FormattedIntEnum):
     CARBINE = 6
     ASSAULT_RIFLE = 7
     HEAVY_ASSAULT_RIFLE = 8
+    MACHINEPISTOL = 9
+    HEAVY_SMG = 10
+    DOUBLE_TAP_RIFLE = 11
+    BURST_RIFLE = 12
 
 
 class Special(FormattedIntEnum):
@@ -25,6 +29,8 @@ class Special(FormattedIntEnum):
     BURST_CANNON = 5
     MACHINEGUN = 6
     REVOLVER = 7
+    HEL_GUN = 8
+    HEL_RIFLE = 9
 
 
 class Utility(FormattedIntEnum):
