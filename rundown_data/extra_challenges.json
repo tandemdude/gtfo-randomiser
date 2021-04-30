@@ -20,6 +20,7 @@
     "No using terminals except for commands required for objectives",
     "Only walk sideways and backwards (unbind your walk forward key)",
     "No killing enemies unless they are already awake",
-    "Swap the keybinds for your shoot and aim buttons"
+    "Swap the keybinds for your shoot and aim buttons",
+    "No boosters allowed"
   ]
 }
