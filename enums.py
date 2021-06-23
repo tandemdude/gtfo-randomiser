@@ -19,6 +19,7 @@ class Primary(FormattedIntEnum):
     HEAVY_SMG = 10
     DOUBLE_TAP_RIFLE = 11
     BURST_RIFLE = 12
+    SAWED_OFF_SHOTGUN = 13
 
 
 class Special(FormattedIntEnum):
@@ -56,6 +57,7 @@ class Stage(FormattedIntEnum):
     B1 = 4
     B2 = 5
     B3 = 6
+    B4 = 13
     C1 = 7
     C2 = 8
     C3 = 9
