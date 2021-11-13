@@ -1,1 +1,1 @@
-web: gunicorn 'randomiser:myapp' --preload
+web: gunicorn 'randomiser:create_app()' --preload

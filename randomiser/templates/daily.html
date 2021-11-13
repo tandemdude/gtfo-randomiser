@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>GTFO Randomiser</title>
+    <meta name="description" content="Penis">
+    <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic">
+    <link rel="stylesheet" href="static/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="static/css/Features-Boxed-1.css">
+    <link rel="stylesheet" href="static/css/Features-Boxed.css">
+    <link rel="stylesheet" href="static/css/untitled.css">
+    <script src="static/js/get_data.js"></script>
+    <script src="static/js/countdown.js"></script>
+    <script src="static/js/submission.js"></script>
+</head>
+
+<body id="page-top">
+    <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-secondary text-uppercase" id="mainNav">
+        <div class="container"><a class="navbar-brand js-scroll-trigger" href="#page-top">GTFO Randomiser</a><button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler text-white bg-primary navbar-toggler-right text-uppercase rounded" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/">Home</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/weekly">Weekly</a></li>
+                    {% if not auth_success %}
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/login">Log In</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div id="overlay-form">
+        <div class="inner-form">
+            <form action="/api/submit_daily" method="post" style="color: #99aab5;">
+                <b style="font-size: 25px; color: #5865F2">Complete the form below to submit your time to the leaderboard:</b><br><br>
+                Time to complete:<br>
+                <input class="form-input" type="number" id="h" name="hours" min="0" max="23" required><label for="h">h</label>
+                <input class="form-input" type="number" id="m" name="minutes" min="0" max="59" required><label for="m">m</label>
+                <input class="form-input" type="number" id="s" name="seconds" min="0" max="59" required><label for="s">s</label><br>
+                Evidence URL:<br>
+                <input class="form-input" type="url" id="url" name="url" required><label for="url"></label>
+                <br>
+                <div class="btn-group" role="group" style="margin: auto; width: 80%">
+                    <button class="btn btn-dark" type="button" onclick="hideform()">Cancel</button>
+                    <input type="submit" value="Submit" class="btn btn-dark">
+                </div>
+            </form>
+        </div>
+    </div>
+    <header class="text-center text-white bg-primary masthead" style="padding: 0 0 50px; background-color: #313437"></header>
+    <section class="features-boxed" style="padding: 95px 0 20px;">
+        <div class="container">
+            <div class="intro">
+                <h3 class="text-center">Daily Challenge</h3>
+            </div>
+            <h5 class="text-center" id="stage" style="color: #99aab5;padding-top: 10px;">STAGE: <span style="color: #18bc9c;">{{ str(d["stage"][0]) }}</span>
+                <br>DIFFICULTY: <span style="color: #18bc9c;">{{ str(d["stage"][1]) }}</span>
+            </h5>
+            <div class="row justify-content-center features">
+                <div class="col-sm-6 col-md-5 col-lg-4 item">
+                    <div class="box">
+                        <h3 class="name">Player 1</h3>
+                        <p class="description" id="1">Primary: <span style="color: #18bc9c;">{{ str(d["p1"][0]) }}</span>
+                            <br>Secondary: <span style="color: #18bc9c;">{{ str(d["p1"][1]) }}</span>
+                            <br>Tool: <span style="color: #18bc9c;">{{ str(d["p1"][2]) }}</span>
+                            <br>Melee: <span style="color: #18bc9c;">{{ str(d["p1"][3]) }}</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-5 col-lg-4 item">
+                    <div class="box">
+                        <h3 class="name">Player 2</h3>
+                        <p class="description" id="2">Primary: <span style="color: #18bc9c;">{{ str(d["p2"][0]) }}</span>
+                            <br>Secondary: <span style="color: #18bc9c;">{{ str(d["p2"][1]) }}</span>
+                            <br>Tool: <span style="color: #18bc9c;">{{ str(d["p2"][2]) }}</span>
+                            <br>Melee: <span style="color: #18bc9c;">{{ str(d["p2"][3]) }}</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-5 col-lg-4 item">
+                    <div class="box">
+                        <h3 class="name">Player 3</h3>
+                        <p class="description" id="3">Primary: <span style="color: #18bc9c;">{{ str(d["p3"][0]) }}</span>
+                            <br>Secondary: <span style="color: #18bc9c;">{{ str(d["p3"][1]) }}</span>
+                            <br>Tool: <span style="color: #18bc9c;">{{ str(d["p3"][2]) }}</span>
+                            <br>Melee: <span style="color: #18bc9c;">{{ str(d["p3"][3]) }}</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-5 col-lg-4 item">
+                    <div class="box">
+                        <h3 class="name">Player 4</h3>
+                        <p class="description" id="4">Primary: <span style="color: #18bc9c;">{{ str(d["p4"][0]) }}</span>
+                            <br>Secondary: <span style="color: #18bc9c;">{{ str(d["p4"][1]) }}</span>
+                            <br>Tool: <span style="color: #18bc9c;">{{ str(d["p4"][2]) }}</span>
+                            <br>Melee: <span style="color: #18bc9c;">{{ str(d["p4"][3]) }}</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <h3 style="color: #99aab5; margin: auto; text-align: center; padding-bottom: 20px">Next Daily In: <span id="countdown" style="color: #18bc9c;">...</span></h3>
+    <hr style="width: 80%;">
+    {% if auth_success %}
+        <div class="btn-group" role="group">
+            <button class="btn btn-dark" type="button" onclick="showform()">Submit a Run</button>
+        </div>
+    {% else %}
+        <h5 style="margin: auto; text-align: center;">You must be logged in to submit a run.</h5>
+    {% endif %}
+    <h3 style="margin: auto; text-align: center; padding: 20px">Leaderboard</h3>
+    <div style="overflow-x:auto; padding-bottom: 50px">
+        <table>
+            <tr>
+                <th class="table-header">Submitter</th>
+                <th class="table-header">Completion Time</th>
+                <th class="table-header">Evidence</th>
+                <th class="table-header">Verified</th>
+                <th class="table-header">ID</th>
+            </tr>
+            {% for record in submitted_runs %}
+                <tr>
+                    <th>{{ record[0] }}</th>
+                    <th>{{ record[1] }}</th>
+                    <th><a href="{{ record[2] }}" target="_blank">Click Here</a></th>
+                    <th>{{ record[3] }}</th>
+                    <th>{{ record[4] }}</th>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <div class="text-center text-white copyright py-4">
+        <div class="container"><small style="opacity: 0.50;">"GTFO" is a registered trademark or trademark of 10 Chambers AB in various territories worldwide.<br><br><br></small></div>
+    </div>
+    <script src="static/js/jquery.min.js"></script>
+    <script src="static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="static/js/freelancer.js"></script>
+</body>
+
+</html>
