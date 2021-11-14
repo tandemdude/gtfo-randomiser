@@ -31,6 +31,8 @@
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Weekly</a></li>
                     {% if not auth_success %}
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/login">Log In</a></li>
+                    {% else %}
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/profile">Profile</a></li>
                     {% endif %}
                 </ul>
             </div>

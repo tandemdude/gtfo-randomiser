@@ -21,7 +21,8 @@ def create_state() -> str:
     ).hexdigest()
 
 
-def get_auth_url() -> str:
+def get_auth_url() -> tuple:
+    state = create_state()
     return (
         AUTH_URL
         + "?"
@@ -30,12 +31,12 @@ def get_auth_url() -> str:
                 "response_type": "code",
                 "client_id": CLIENT_ID,
                 "scope": "identify",
-                "state": create_state(),
+                "state": state,
                 "redirect_uri": REDIRECT_URL,
-                "prompt": "none",
+                "prompt": "consent",
             }
         )
-    )
+    ), state
 
 
 def exchange_code(request: flask.Request) -> tuple:

@@ -4,7 +4,7 @@ import flask
 import requests
 from flask import request
 
-from randomiser import utils
+from randomiser import daily, utils
 from randomiser.database import manager
 from randomiser.endpoints import _format_time
 
@@ -60,7 +60,7 @@ def submit_daily_run():
             "embeds": [
                 {
                     "title": "New run submitted",
-                    "description": f"**Run length:** `{_format_time(total_seconds)}`\n**Evidence:** [Click]({evidence_url})\n\n**ID:** `{run_id}`\n**Submitted By:** <@{discord_uid}> ({discord_uid})",
+                    "description": f"**Run length:** `{_format_time(total_seconds)}`\n**Evidence:** [Click]({evidence_url})\n**Submitted By:** <@{discord_uid}> (`{discord_uid}`)\n\n**ID:** `{run_id}`",
                 }
             ],
         },
@@ -89,6 +89,32 @@ def reject_daily_run():
     dbm.delete_run(int(request.args["run_id"]))
 
     return flask.Response(status=200)
+
+
+@bp.route("/daily")
+def get_daily():
+    loadout = daily.get_daily()
+
+    def _create_p_dict(p):
+        return {
+            "primary": str(p[0]),
+            "secondary": str(p[1]),
+            "tool": str(p[2]),
+            "melee": str(p[3]),
+        }
+
+    return {
+        "players": {
+            "1": _create_p_dict(loadout["p1"]),
+            "2": _create_p_dict(loadout["p1"]),
+            "3": _create_p_dict(loadout["p1"]),
+            "4": _create_p_dict(loadout["p1"]),
+        },
+        "stage": {
+            "stage": str(loadout["stage"][0]),
+            "difficulty": str(loadout["stage"][1]),
+        },
+    }
 
 
 def setup(app: flask.Flask) -> None:

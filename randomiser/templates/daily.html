@@ -19,7 +19,6 @@
     <link rel="stylesheet" href="static/css/Features-Boxed-1.css">
     <link rel="stylesheet" href="static/css/Features-Boxed.css">
     <link rel="stylesheet" href="static/css/untitled.css">
-    <script src="static/js/get_data.js"></script>
     <script src="static/js/countdown.js"></script>
     <script src="static/js/submission.js"></script>
 </head>
@@ -33,6 +32,8 @@
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Weekly</a></li>
                     {% if not auth_success %}
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/login">Log In</a></li>
+                    {% else %}
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/profile">Profile</a></li>
                     {% endif %}
                 </ul>
             </div>
@@ -60,7 +61,7 @@
     <section class="features-boxed" style="padding: 95px 0 20px;">
         <div class="container">
             <div class="intro">
-                <h3 class="text-center">Daily Challenge</h3>
+                <h3 class="text-center">DAILY CHALLENGE</h3>
             </div>
             <h5 class="text-center" id="stage" style="color: #99aab5;padding-top: 10px;">STAGE: <span style="color: #18bc9c;">{{ str(d["stage"][0]) }}</span>
                 <br>DIFFICULTY: <span style="color: #18bc9c;">{{ str(d["stage"][1]) }}</span>
@@ -133,7 +134,7 @@
                     <th>{{ record[0] }}</th>
                     <th>{{ record[1] }}</th>
                     <th><a href="{{ record[2] }}" target="_blank">Click Here</a></th>
-                    <th>{{ record[3] }}</th>
+                    <th>{{ "Yes" if record[3] else "No" }}</th>
                     <th>{{ record[4] }}</th>
                 </tr>
             {% endfor %}

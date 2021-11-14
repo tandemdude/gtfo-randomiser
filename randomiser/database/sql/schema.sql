@@ -1,3 +1,7 @@
+CREATE TABLE IF NOT EXISTS states (
+    state TEXT PRIMARY KEY
+);
+
 CREATE TABLE IF NOT EXISTS credentials (
     user_id TEXT PRIMARY KEY,
     username TEXT NOT NULL,

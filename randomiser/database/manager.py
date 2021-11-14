@@ -130,6 +130,38 @@ class DatabaseManager:
         with get_cursor(self._connector, commit=True) as cur:
             cur.execute("DELETE FROM daily_runs WHERE run_id = %s;", (run_id,))
 
+    def get_username_and_discrim(self, user_id):
+        with get_cursor(self._connector) as cur:
+            cur.execute(
+                "SELECT username, discrim FROM credentials WHERE user_id = %s;",
+                (user_id,),
+            )
+            data = cur.fetchone()
+        return "#".join(data)
+
+    def get_daily_runs_for_user(self, user_id):
+        with get_cursor(self._connector) as cur:
+            cur.execute(
+                "SELECT run_date, run_time, evidence_url, run_verified, run_id FROM daily_runs WHERE user_id = %s ORDER BY run_date DESC, run_time;",
+                (user_id,),
+            )
+            data = cur.fetchall()
+        return data
+
+    def save_state(self, state):
+        with get_cursor(self._connector, commit=True) as cur:
+            cur.execute("INSERT INTO states(state) VALUES(%s);", (state,))
+
+    def validate_state(self, state):
+        with get_cursor(self._connector) as cur:
+            cur.execute("SELECT state FROM states WHERE state = %s;", (state,))
+            data = cur.fetchone()
+        return data[0] if data else None if isinstance(data, tuple) else data
+
+    def delete_state(self, state):
+        with get_cursor(self._connector, commit=True) as cur:
+            cur.execute("DELETE FROM states WHERE state = %s;", (state,))
+
 
 def get_database_manager():
     if "dbm" not in g:

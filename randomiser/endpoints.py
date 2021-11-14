@@ -61,18 +61,54 @@ def daily():
     )
 
 
+@bp.route("/profile")
+def profile():
+    user_id = request.cookies.get("gr_d_uid")
+    if user_id is None:
+        return flask.redirect(flask.url_for(".root"))
+
+    dbm = manager.get_database_manager()
+    user = dbm.get_username_and_discrim(user_id)
+
+    daily_runs = dbm.get_daily_runs_for_user(user_id) or [DEFAULT_DAILY_ROW]
+    for i in range(len(daily_runs)):
+        daily_runs[i] = list(daily_runs[i])
+        daily_runs[i][1] = _format_time(daily_runs[i][1])
+
+    return flask.render_template("profile.html", user=user, submitted_runs=daily_runs)
+
+
 @bp.route("/login")
 def login():
-    return flask.redirect(auth.get_auth_url())
+    url, state = auth.get_auth_url()
+
+    dbm = manager.get_database_manager()
+    dbm.save_state(state)
+
+    return flask.redirect(url)
+
+
+@bp.route("/logout")
+def logout():
+    resp = flask.make_response(flask.render_template("logout.html"))
+    resp.set_cookie("gr_d_uid", "", expires=0)
+    return resp
 
 
 @bp.route("/authCallback")
 def complete_auth():
-    if request.args.get("error") == "access_denied" or not request.args.get("code"):
+    dbm = manager.get_database_manager()
+    state = dbm.validate_state(request.args.get("state"))
+    dbm.delete_state(state)
+
+    if (
+        request.args.get("error") == "access_denied"
+        or not request.args.get("code")
+        or not state
+    ):
         return flask.redirect(flask.url_for(".root", auth="fail"))
 
     user_info, tokens = auth.exchange_code(request)
-    dbm = manager.get_database_manager()
     dbm.delete_tokens_for_same_user(user_info["id"])
     dbm.save_tokens(
         user_info["id"], user_info["username"], user_info["discriminator"], tokens
