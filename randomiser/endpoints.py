@@ -54,7 +54,7 @@ def daily():
         todays_runs[i][1] = _format_time(todays_runs[i][1])
 
     yesterday_winner = dbm.get_daily_winner((now - datetime.timedelta(days=1)).strftime("%Y-%m-%d"))
-    yesterday_winner = list(yesterday_winner) or ["No Winner :(", 0, "https://www.youtube.com/watch?v=dQw4w9WgXcQ"]
+    yesterday_winner = list(yesterday_winner) or ["No Winner :(", 0, "https://www.youtube.com/watch?v=dQw4w9WgXcQ", "69420"]
     yesterday_winner[1] = _format_time(yesterday_winner[1])
 
     return flask.render_template(
