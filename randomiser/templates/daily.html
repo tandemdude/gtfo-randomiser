@@ -117,10 +117,10 @@
             <button class="btn btn-dark" type="button" onclick="showform()">Submit a Run</button>
         </div>
     {% else %}
-        <h5 style="margin: auto; text-align: center;">You must be logged in to submit a run.</h5>
+        <h5 class="text-center">You must be logged in to submit a run.</h5>
     {% endif %}
-    <h3 style="margin: auto; text-align: center; padding: 20px">Leaderboard</h3>
-    <div style="overflow-x:auto; padding-bottom: 50px">
+    <h3 class="text-center" style="padding: 20px">LEADERBOARD</h3>
+    <div style="overflow-x:auto; padding-bottom: 50px;">
         <table>
             <tr>
                 <th class="table-header">Submitter</th>
@@ -140,6 +140,12 @@
             {% endfor %}
         </table>
     </div>
+    <hr style="width: 80%;">
+    <h3 class="text-center" style="padding: 20px">YESTERDAY'S WINNER</h3>
+    <h6 class="text-center" style="color: #99aab5; padding-bottom: 50px">
+        Run ID {{ yesterday_winner[3] }} by {{ yesterday_winner[0] }} with a time of {{ yesterday_winner[1] }}
+        <br><a href="{{ yesterday_winner[2] }}" target="_blank">Evidence</a>
+    </h6>
 
     <div class="text-center text-white copyright py-4">
         <div class="container"><small style="opacity: 0.50;">"GTFO" is a registered trademark or trademark of 10 Chambers AB in various territories worldwide.<br><br><br></small></div>

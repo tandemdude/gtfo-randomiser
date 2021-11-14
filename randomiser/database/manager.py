@@ -103,6 +103,27 @@ class DatabaseManager:
             rows = cur.fetchall()
         return rows
 
+    def get_daily_winner(self, date):
+        with get_cursor(self._connector) as cur:
+            cur.execute(
+                """
+                SELECT
+                    credentials.username || '#' || credentials.discrim,
+                    daily_runs.run_time,
+                    daily_runs.evidence_url,
+                    daily_runs.run_id
+                FROM daily_runs
+                INNER JOIN 
+                    credentials 
+                        ON credentials.user_id = daily_runs.user_id
+                WHERE daily_runs.run_date = %s
+                ORDER BY daily_runs.run_time
+                LIMIT 1;
+                """, (date,)
+            )
+            data = cur.fetchone()
+        return data
+
     def save_daily_run(self, date, p1, p2, p3, p4, stage):
         with get_cursor(self._connector, commit=True) as cur:
             cur.execute(
