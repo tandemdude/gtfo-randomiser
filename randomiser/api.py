@@ -106,9 +106,9 @@ def get_daily():
     return {
         "players": {
             "1": _create_p_dict(loadout["p1"]),
-            "2": _create_p_dict(loadout["p1"]),
-            "3": _create_p_dict(loadout["p1"]),
-            "4": _create_p_dict(loadout["p1"]),
+            "2": _create_p_dict(loadout["p2"]),
+            "3": _create_p_dict(loadout["p3"]),
+            "4": _create_p_dict(loadout["p4"]),
         },
         "stage": {
             "stage": str(loadout["stage"][0]),
