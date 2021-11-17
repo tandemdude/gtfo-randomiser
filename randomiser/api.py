@@ -1,10 +1,13 @@
+import json
 import os
+import random
+from importlib import resources
 
 import flask
 import requests
 from flask import request
 
-from randomiser import daily, utils
+from randomiser import daily, rundown_data, utils
 from randomiser.database import manager
 from randomiser.endpoints import _format_time
 
@@ -115,6 +118,12 @@ def get_daily():
             "difficulty": str(loadout["stage"][1]),
         },
     }
+
+
+@bp.route("/random_handicap")
+def random_handicap():
+    handicaps = resources.read_text(rundown_data, "extra_challenges.json")
+    return {"handicap": random.choice(json.loads(handicaps)["challenges"])}
 
 
 def setup(app: flask.Flask) -> None:

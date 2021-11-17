@@ -119,7 +119,8 @@ class DatabaseManager:
                 WHERE daily_runs.run_date = %s
                 ORDER BY daily_runs.run_time
                 LIMIT 1;
-                """, (date,)
+                """,
+                (date,),
             )
             data = cur.fetchone()
         return data

@@ -2,7 +2,7 @@ import datetime
 import logging
 
 import flask
-from flask import request
+from flask import request, session
 
 from randomiser import auth
 from randomiser import daily as daily_
@@ -30,22 +30,24 @@ def _format_time(n_seconds):
 @bp.route("/")
 def root():
     auth_success = {"fail": False, "success": True}[request.args.get("auth", "fail")]
-    if request.cookies.get("gr_d_uid"):
+    if session.get("gr_d_uid"):
         auth_success = True
-    return flask.render_template("index.html", auth_success=auth_success)
+    return flask.render_template(
+        "index.html",
+        auth_success=auth_success,
+        handicap="Play the entire stage on 20% hp only",
+    )
 
 
 @bp.route("/daily")
 def daily():
-    authed = request.cookies.get("gr_d_uid") is not None
+    authed = session.get("gr_d_uid") is not None
 
     daily_loadout = daily_.get_daily()
 
     dbm = manager.get_database_manager()
     now = datetime.datetime.now(datetime.timezone.utc).date()
-    todays_runs = dbm.get_top_ten_daily_runs(
-        now.strftime("%Y-%m-%d")
-    )
+    todays_runs = dbm.get_top_ten_daily_runs(now.strftime("%Y-%m-%d"))
     if not todays_runs:
         todays_runs = [DEFAULT_DAILY_ROW]
 
@@ -53,8 +55,15 @@ def daily():
         todays_runs[i] = list(todays_runs[i])
         todays_runs[i][1] = _format_time(todays_runs[i][1])
 
-    yesterday_winner = dbm.get_daily_winner((now - datetime.timedelta(days=1)).strftime("%Y-%m-%d"))
-    yesterday_winner = list(yesterday_winner or ()) or ["No Winner :(", 0, "https://www.youtube.com/watch?v=dQw4w9WgXcQ", "69420"]
+    yesterday_winner = dbm.get_daily_winner(
+        (now - datetime.timedelta(days=1)).strftime("%Y-%m-%d")
+    )
+    yesterday_winner = list(yesterday_winner or ()) or [
+        "No Winner :(",
+        0,
+        "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        "69420",
+    ]
     yesterday_winner[1] = _format_time(yesterday_winner[1])
 
     return flask.render_template(
@@ -69,7 +78,7 @@ def daily():
 
 @bp.route("/profile")
 def profile():
-    user_id = request.cookies.get("gr_d_uid")
+    user_id = session.get("gr_d_uid")
     if user_id is None:
         return flask.redirect(flask.url_for(".root"))
 
@@ -96,9 +105,8 @@ def login():
 
 @bp.route("/logout")
 def logout():
-    resp = flask.make_response(flask.render_template("logout.html"))
-    resp.set_cookie("gr_d_uid", "", expires=0)
-    return resp
+    session.pop("gr_d_uid", None)
+    return flask.make_response(flask.render_template("logout.html"))
 
 
 @bp.route("/authCallback")
@@ -120,9 +128,8 @@ def complete_auth():
         user_info["id"], user_info["username"], user_info["discriminator"], tokens
     )
 
-    redirect = flask.redirect(flask.url_for(".root", auth="success"))
-    redirect.set_cookie("gr_d_uid", user_info["id"], max_age=60 * 60 * 24 * 365)
-    return redirect
+    session["gr_d_uid"] = user_info["id"]
+    return flask.redirect(flask.url_for(".root", auth="success"))
 
 
 def setup(app: flask.Flask) -> None:

@@ -77,6 +77,14 @@
             <button class="btn btn-dark" type="button" onclick="get_loadout(5)">Rundown 5</button>
         </div>
     </section>
+    <hr style="width: 80%">
+    <h3 class="text-center">HANDICAPS</h3>
+    <h6 class="text-center">Game too easy? use a handicap to make it more of a challenge</h6>
+    <h3 class="text-center" style="padding-top: 20px;">Current Handicap:</h3>
+    <h6 class="text-center" style="color: #99aab5" id="handicap">{{ handicap }}</h6>
+    <div class="btn-group" role="group" style="padding: 20px">
+        <button class="btn btn-dark" type="button" onclick="get_handicap()" style="max-width: 30%; margin: auto;">Reroll</button>
+    </div>
     <div class="text-center text-white copyright py-4">
         <div class="container">
             <small style="opacity: 0.50;">

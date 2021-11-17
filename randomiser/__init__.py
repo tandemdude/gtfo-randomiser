@@ -1,4 +1,5 @@
 import logging
+import os
 
 import flask
 
@@ -12,6 +13,7 @@ logging.basicConfig(level=logging.INFO)
 def create_app() -> flask.Flask:
     _LOGGER.info("Creating application")
     app = flask.Flask(__name__)
+    app.secret_key = os.environ["SECRET_KEY"]
 
     @app.teardown_appcontext
     def close_dbm(_):
