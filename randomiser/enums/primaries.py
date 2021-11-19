@@ -14,3 +14,5 @@ class Primaries(base.FormattedIntEnum):
     HEAVY_SMG = 10
     DOUBLE_TAP_RIFLE = 11
     BURST_RIFLE = 12
+    BULLPUP_RIFLE = 13
+    RIFLE = 14

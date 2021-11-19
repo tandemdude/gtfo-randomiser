@@ -14,3 +14,4 @@ class Stages(base.FormattedIntEnum):
     D1 = 10
     D2 = 11
     E1 = 12
+    B4 = 13

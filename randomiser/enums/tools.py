@@ -8,3 +8,4 @@ class Tools(base.FormattedIntEnum):
     BURST_SENTRY = 4
     SNIPER_SENTRY = 5
     MINE_DEPLOYER = 6
+    SHOTGUN_SENTRY = 7
