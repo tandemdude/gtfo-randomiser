@@ -6,3 +6,6 @@ class Melees(base.FormattedIntEnum):
     MAUL = 2
     MALLET = 3
     GAVEL = 4
+    KNIFE = 5
+    SPEAR = 6
+    BAT = 7

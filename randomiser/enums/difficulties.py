@@ -6,3 +6,5 @@ class Difficulties(base.FormattedIntEnum):
     EXTREME = 2
     OVERLOAD = 3
     PRISONER_EFFICIENCY = 4
+    MAIN = 5
+    SECONDARY = 6

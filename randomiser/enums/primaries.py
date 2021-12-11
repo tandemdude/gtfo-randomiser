@@ -16,3 +16,4 @@ class Primaries(base.FormattedIntEnum):
     BURST_RIFLE = 12
     BULLPUP_RIFLE = 13
     RIFLE = 14
+    SAWED_OFF_SHOTGUN = 15

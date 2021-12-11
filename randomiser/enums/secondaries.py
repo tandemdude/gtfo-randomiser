@@ -11,3 +11,5 @@ class Secondaries(base.FormattedIntEnum):
     REVOLVER = 7
     HEL_GUN = 8
     HEL_RIFLE = 9
+    HEAVY_ASSAULT_RIFLE = 10
+    SCATTERGUN = 11

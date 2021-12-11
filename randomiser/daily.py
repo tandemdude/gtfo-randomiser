@@ -4,7 +4,7 @@ from randomiser import utils
 from randomiser.database import manager
 from randomiser.enums import difficulties, melees, primaries, secondaries, stages, tools
 
-CURRENT_RUNDOWN = 5
+CURRENT_RUNDOWN = 6
 
 
 def create_daily(current_rundown):
