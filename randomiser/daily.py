@@ -28,7 +28,7 @@ def get_daily():
         datetime.datetime.now(datetime.timezone.utc).date().strftime("%Y-%m-%d")
     )
     if not db_result:
-        db_result = create_daily(5)
+        db_result = create_daily(CURRENT_RUNDOWN)
 
     p1_raw = db_result[0].split(",")
     p1 = (
